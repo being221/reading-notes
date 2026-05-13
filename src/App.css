@@ -1,0 +1,227 @@
+:root {
+  --bg: #1a1a2e;
+  --card-bg: #16213e;
+  --text: #eee;
+  --accent: #e94560;
+  --link: #88c0d0;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: "Microsoft YaHei", sans-serif;
+}
+
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+}
+
+/* ---- Header ---- */
+.app-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.app-header h1 {
+  color: var(--accent);
+  margin: 0 0 6px 0;
+  font-size: 28px;
+}
+.app-header p {
+  margin: 0;
+  opacity: 0.5;
+  font-size: 14px;
+}
+
+/* ---- Form ---- */
+.book-form {
+  background-color: var(--card-bg);
+  padding: 18px;
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+.form-row input {
+  flex: 1;
+  min-width: 0;
+}
+.form-row select {
+  width: 90px;
+  flex-shrink: 0;
+}
+input, select, textarea {
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid rgba(128,128,128,0.3);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 14px;
+  font-family: inherit;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+textarea {
+  resize: vertical;
+}
+button {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: inherit;
+}
+button:hover {
+  background-color: #c12e4a;
+}
+
+/* ---- Book List ---- */
+.book-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.empty-hint {
+  text-align: center;
+  opacity: 0.4;
+  margin-top: 40px;
+}
+
+/* ---- Book Card ---- */
+.book-card {
+  background-color: var(--card-bg);
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: transform 0.2s;
+}
+.book-card:hover {
+  transform: translateY(-2px);
+}
+.book-info {
+  flex: 1;
+}
+.book-info h3 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+}
+.book-author {
+  font-size: 13px;
+  opacity: 0.6;
+  margin-right: 10px;
+}
+.book-tag {
+  font-size: 11px;
+  background-color: var(--accent);
+  color: #fff;
+  padding: 1px 8px;
+  border-radius: 10px;
+  vertical-align: middle;
+}
+.book-note {
+  margin: 10px 0 0 0;
+  font-size: 13px;
+  opacity: 0.7;
+  line-height: 1.6;
+  border-left: 2px solid var(--accent);
+  padding-left: 10px;
+}
+/* ---- Card Actions ---- */
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.edit-btn, .delete-btn {
+  background: none;
+  border: 1px solid rgba(128,128,128,0.3);
+  color: var(--text);
+  opacity: 0.5;
+  padding: 4px 12px;
+  font-size: 12px;
+}
+.edit-btn:hover, .delete-btn:hover {
+  opacity: 1;
+  border-color: var(--accent);
+  color: var(--accent);
+  background: none;
+}
+
+/* ---- Edit Form ---- */
+.edit-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.edit-form input, .edit-form textarea, .edit-form select {
+  width: 100%;
+}
+.edit-row {
+  display: flex;
+  gap: 8px;
+}
+.edit-actions {
+  display: flex;
+  gap: 8px;
+}
+.cancel-btn {
+  background: rgba(128,128,128,0.2) !important;
+  color: var(--text) !important;
+}
+
+/* ---- 搜索栏 ---- */
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.search-input {
+  flex: 1;
+  min-width: 0;
+}
+.count-hint {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.4;
+  margin: 0 0 8px 0;
+}
+
+@media (max-width: 500px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .form-row select {
+    width: 100%;
+  }
+  .app {
+    padding: 16px 12px 60px;
+  }
+  .toolbar {
+    flex-direction: column;
+  }
+  .edit-actions {
+    flex-direction: column;
+  }
+}
