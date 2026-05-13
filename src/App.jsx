@@ -88,6 +88,7 @@ function App() {
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("历史");
   const [note, setNote] = useState("");
+  const [status, setStatus] = useState("想读");
 
   const [search, setSearch] = useState("");
   const [filterGenre, setFilterGenre] = useState("全部");
@@ -111,11 +112,12 @@ function App() {
     if (!title.trim() || !author.trim()) return;
     setBooks([{
       id: Date.now(), title: title.trim(), author: author.trim(),
-      genre, note: note.trim(), status: "想读",
+      genre, note: note.trim(), status,
     }, ...books]);
     setTitle("");
     setAuthor("");
     setNote("");
+    setStatus("想读");
   };
 
   const deleteBook = (id) => setBooks(books.filter((b) => b.id !== id));
@@ -141,7 +143,12 @@ function App() {
           </select>
         </div>
         <textarea value={note} onChange={(e) => setNote(e.target.value)} placeholder="写点笔记..." rows="2" />
-        <button type="submit">添加</button>
+        <div className="form-row">
+          <select value={status} onChange={(e) => setStatus(e.target.value)}>
+            {STATUS_OPTIONS.map((s) => (<option key={s}>{s}</option>))}
+          </select>
+          <button type="submit">添加</button>
+        </div>
       </form>
 
       {books.length > 0 && (
