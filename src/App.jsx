@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 import "./App.css";
 
@@ -95,7 +95,9 @@ function App() {
   const [filterStatus, setFilterStatus] = useState("全部");
 
   // 把 theme 设到 <body> 上，CSS 变量自动切换
-  document.body.className = theme;
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
