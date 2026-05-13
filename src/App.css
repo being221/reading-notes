@@ -1,10 +1,18 @@
-:root {
+:root, body.dark {
   --bg: #1a1a2e;
   --card-bg: #16213e;
   --text: #eee;
   --accent: #e94560;
   --link: #88c0d0;
   --radius: 8px;
+}
+
+body.light {
+  --bg: #f8f8f8;
+  --card-bg: #fff;
+  --text: #333;
+  --accent: #c0392b;
+  --link: #2471a3;
 }
 
 * {
@@ -206,6 +214,69 @@ button:hover {
   font-size: 12px;
   opacity: 0.4;
   margin: 0 0 8px 0;
+}
+
+/* ---- 主题切换 ---- */
+.theme-toggle {
+  background: none;
+  border: 1px solid rgba(128,128,128,0.3);
+  color: var(--text);
+  padding: 4px 16px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+.theme-toggle:hover {
+  opacity: 1;
+  border-color: var(--accent);
+  color: var(--accent);
+  background: none;
+}
+
+/* ---- 阅读状态 Tab ---- */
+.status-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.tab-btn {
+  flex: 1;
+  background: var(--card-bg);
+  border: 1px solid rgba(128,128,128,0.2);
+  color: var(--text);
+  padding: 6px 0;
+  font-size: 12px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+.tab-btn:hover { opacity: 1; }
+.tab-btn.active {
+  opacity: 1;
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* ---- 状态徽章 ---- */
+.status-badge {
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(128,128,128,0.4);
+  opacity: 0.7;
+  flex-shrink: 0;
+  align-self: center;
+}
+.status-badge.reading {
+  border-color: #f0a500;
+  color: #f0a500;
+  opacity: 1;
+}
+.status-badge.done {
+  border-color: #27ae60;
+  color: #27ae60;
+  opacity: 1;
 }
 
 @media (max-width: 500px) {
