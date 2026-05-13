@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [
     react(),
     legacy({
-      targets: ['defaults', 'not IE 11'],  // 兼容微信等旧浏览器
+      targets: ['defaults', 'not IE 11'],
+      renderModernChunks: false,  // 不生成 module 脚本，统一用普通 script，微信兼容
     }),
   ],
   base: "/reading-notes/",

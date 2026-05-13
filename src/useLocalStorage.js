@@ -1,16 +1,29 @@
 import { useState, useEffect } from "react";
 
-// ===== 自定义 Hook：把 localStorage 逻辑抽成可复用函数 =====
-// 普通函数只是算值，Hook 函数内部用了 useState/useEffect，
-// 所以名字必须以 use 开头（React 的约定）
-export function useLocalStorage(key, initialValue) {
-  const [value, setValue] = useState(() => {
+// ===== 自定义 Hook：安全版 localStorage =====
+// 微信等环境可能拦截 localStorage，try/catch 防止崩溃
+function safeGet(key, fallback) {
+  try {
     const saved = localStorage.getItem(key);
-    return saved ? JSON.parse(saved) : initialValue;
-  });
+    return saved ? JSON.parse(saved) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function safeSet(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    // 静默失败——微信等环境下存储不可用
+  }
+}
+
+export function useLocalStorage(key, initialValue) {
+  const [value, setValue] = useState(() => safeGet(key, initialValue));
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
+    safeSet(key, value);
   }, [key, value]);
 
   return [value, setValue];
